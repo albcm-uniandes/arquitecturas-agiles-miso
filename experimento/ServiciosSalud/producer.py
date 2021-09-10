@@ -1,10 +1,10 @@
 import pika, json
-
+import os
 """
 Este script publica mensajes a la cola de Rabbit MQ
 """
 
-params = pika.URLParameters('amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem')
+params = pika.URLParameters(os.environ.get('QUEUE_KEY'))
 
 connection = pika.BlockingConnection(params)
 
