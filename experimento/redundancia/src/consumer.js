@@ -4,7 +4,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const fs = require('fs')
 const amqp =  require ('amqplib/callback_api');
-const path = 'MOCK_DATA.json';
+const path = './MOCK_DATA.json';
 const queue = 'test_queue';
     amqp.connect('amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem', (error0, connection) => {
         if (error0) {
@@ -21,7 +21,7 @@ const queue = 'test_queue';
             const app = express()
             app.use(express.json())
             channel.consume(queue, async (msg) => {
-                fs.writeFile(path,  msg.content.toString(), function (err) {
+                fs.appendFile(path,  `${msg.content.toString()} \n`, function (err) {
                     if (err) return console.log(err);
                     /*fs.readFile(path, 'utf8', function(err, data){
                         if (err) return console.log(err);
