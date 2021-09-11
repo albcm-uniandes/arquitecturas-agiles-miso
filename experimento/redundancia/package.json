@@ -1,0 +1,24 @@
+{
+  "name": "main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/consumer.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/consumer.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.7.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.17",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.35",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.3"
+  }
+}
