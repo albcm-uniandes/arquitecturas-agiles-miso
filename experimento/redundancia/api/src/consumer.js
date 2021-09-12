@@ -5,7 +5,7 @@ const require = createRequire(import.meta.url);
 const fs = require('fs')
 const amqp =  require ('amqplib/callback_api');
 const path = './MOCK_DATA.json';
-const queue = 'test_queue';
+const queue = process.env.QUEUE_NAME;
     amqp.connect(process.env.URL_NAME, (error0, connection) => {
         if (error0) {
             throw error0
