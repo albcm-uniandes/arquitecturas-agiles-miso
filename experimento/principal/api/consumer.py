@@ -1,12 +1,12 @@
+import os
 import pika, json
-
-params = pika.URLParameters('amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem')
+params = pika.URLParameters(os.getenv('URL_NAME'))
 connection = pika.BlockingConnection(params)
 channel = connection.channel()
 FILE_NAME = 'MOCK_DATA.json'
 QUEUE = 'test_queue'
 channel.queue_declare(queue=QUEUE)
-
+print(os.getenv('URL_NAME'))
 def callback(ch, method, properties, body):
     data = json.loads(body)
     print(data)

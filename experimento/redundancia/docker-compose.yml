@@ -2,12 +2,15 @@ version: '3.8'
 services:
   backend:
     build:
-      context: .
+      context: ./api/
       dockerfile: Dockerfile
     command: 'node src/consumer.js'
     ports:
-      - 8080:5001
+      - 8082:5001
     volumes:
-      - .:/app
-      - ./MOCK_DATA.json:/app/MOCK_DATA.json 
-
+       - ./data_app/MOCK_DATA.json:/usr/src/app/MOCK_DATA.json
+    environment:
+      URL_NAME: 'amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem'
+      
+volumes:
+    data_app: {} 

@@ -6,7 +6,7 @@ const fs = require('fs')
 const amqp =  require ('amqplib/callback_api');
 const path = './MOCK_DATA.json';
 const queue = 'test_queue';
-    amqp.connect('amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem', (error0, connection) => {
+    amqp.connect(process.env.URL_NAME, (error0, connection) => {
         if (error0) {
             throw error0
         }
