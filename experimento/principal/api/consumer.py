@@ -9,7 +9,7 @@ channel.queue_declare(queue=QUEUE)
 def callback(ch, method, properties, body):
     data = json.loads(body)
     f = open(FILE_NAME, "a")
-    f.write(json.dumps(data)+'\n')
+    f.write(json.dumps(data)+','+'\n')
     f.close()
 
 

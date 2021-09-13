@@ -21,7 +21,7 @@ const queue = process.env.QUEUE_NAME;
             const app = express()
             app.use(express.json())
             channel.consume(queue, async (msg) => {
-                fs.appendFile(path,  `${msg.content.toString()} \n`, function (err) {
+                fs.appendFile(path,  `${msg.content.toString()}, \n`, function (err) {
                     if (err) return console.log(err);
                     /*fs.readFile(path, 'utf8', function(err, data){
                         if (err) return console.log(err);

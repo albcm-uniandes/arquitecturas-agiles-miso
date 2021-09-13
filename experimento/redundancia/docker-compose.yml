@@ -10,7 +10,7 @@ services:
     volumes:
        - ./data_app/MOCK_DATA.json:/usr/src/app/MOCK_DATA.json
     environment:
-      URL_NAME: 'amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem'
+      URL_NAME: 'amqps://xvgcwhcy:555apjMjsMEzWDB28702DBHNHli64S4Q@beaver.rmq.cloudamqp.com/xvgcwhcy'
       QUEUE_NAME: 'test_queue2'
 volumes:
     data_app: {} 

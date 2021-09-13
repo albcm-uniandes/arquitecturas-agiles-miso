@@ -1,5 +1,6 @@
 import json
 import producer
+import time
 
 class ServiciosSaludDispatcher:
     """
@@ -24,12 +25,15 @@ class ServiciosSaludDispatcher:
         enviar uno a uno los mensajes al recibir una lista de json de datos en memoria 
         """
         for message in list_of_data:
+            time.sleep(0.2)
             producer.publish(message)
 
 if __name__ == '__main__':
+    start_time = time.time()
     # Instancia de la clase ServiciosSaludDispatcher
     _ = ServiciosSaludDispatcher()
     # Cargar datos del archivo de pruebas en memoria
     data = _.read_mock_file("MOCK_DATA.json")
     # Enviar cada uno de los datos como mensaje al broker de RabbitMQ
     _.send_to_producer(data)
+    print("--- %s seconds ---" % (time.time() - start_time))

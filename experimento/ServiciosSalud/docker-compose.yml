@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.3'
 services:
   backend:
     build:
@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     command: 'python main.py'
     environment:
-      URL_NAME: 'amqps://yhqizdem:nJGBDLNceVinw90UAxBkIX-65Xw4aTWM@beaver.rmq.cloudamqp.com/yhqizdem'
+      URL_NAME: 'amqps://xvgcwhcy:555apjMjsMEzWDB28702DBHNHli64S4Q@beaver.rmq.cloudamqp.com/xvgcwhcy'
       QUEUE_NAME: 'test_queue'
     ports:
       - 8001:5000
