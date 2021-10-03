@@ -37,10 +37,10 @@ class CitaMedicaSchema(ma.SQLAlchemyAutoSchema):
 
 class PacienteSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        fields = ("id_paciente", "nombre", "apellido", "numero_identificacion", "direccion", "telefono", "email")
+        fields = ("id", "nombre", "apellido", "tipo_identificacion", "numero_identificacion", "direccion", "telefono", "email")
 
 citas_medicas_schema = CitaMedicaSchema(many=True)
-paciente_schema = CitaMedicaSchema()
+paciente_schema = PacienteSchema()
 
 class CitasMedicasResource(Resource):
 
@@ -50,8 +50,11 @@ class CitasMedicasResource(Resource):
 
 class PacienteResource(Resource):
 
+    def get(self, paciente_id):
+        return paciente_schema.dump(Paciente.query.get_or_404(paciente_id))
+
     def put(self, paciente_id):
-        paciente = Product.query.get_or_404(paciente_id)
+        paciente = Paciente.query.get_or_404(paciente_id)
         if 'nombre' in request.json:
             paciente.nombre = request.json['nombre']
         if 'apellido' in request.json:
@@ -69,7 +72,6 @@ class DatosPrueba:
 
     @staticmethod
     def cargarDatosPrueba():
-      
       citas_medicas = CitaMedica.query.all()
       n_citas_medicas = len(citas_medicas)
       
@@ -80,7 +82,7 @@ class DatosPrueba:
           with open("MOCK_DATA_citas.json") as file1:
              data_citas = json.loads(file1.read())
           
-          i = 0
+          i = 1
           for cita in data_citas:
               nueva_cita = CitaMedica(
                   id_usuario=cita['id_usuario'],
