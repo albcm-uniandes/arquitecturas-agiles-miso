@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    command: 'python app.py'
+    ports:
+      - 8002:6000
+volumes:
+    data_app: {} 
