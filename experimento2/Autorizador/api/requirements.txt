@@ -3,6 +3,7 @@ click
 Flask
 Flask-RESTful
 Flask-SQLAlchemy==2.5.1
+Flask-Cors==3.0.9
 greenlet==1.1.0
 itsdangerous==2.0.1
 Jinja2==3.0.1

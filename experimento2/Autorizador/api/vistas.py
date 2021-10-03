@@ -1,5 +1,5 @@
 from flask import request
-from ..modelos import db, Accion, AccionSchema, Usuario, UsuarioSchema
+from modelos import db, Accion, AccionSchema, Usuario, UsuarioSchema
 from flask_restful import Resource
 from sqlalchemy.exc import IntegrityError
 from flask_jwt_extended import jwt_required, create_access_token,get_jwt_identity
@@ -17,8 +17,8 @@ class VistaLogIn(Resource):
             token_de_acceso = create_access_token(identity = usuario.id)
             return {"mensaje":"Inicio de sesión exitoso", "token": token_de_acceso}
 
-class VistaAccion(Resource):
 
+class VistaAccionActualizar(Resource):
     @jwt_required()
     def put(self):
         usuario = get_jwt_identity()
@@ -32,6 +32,8 @@ class VistaAccion(Resource):
             else:
                 return "El usuario posee permisos para esta acción", 200
 
+class VistaAccionConsultar(Resource):
+    
     @jwt_required()
     def get(self):
         usuario = get_jwt_identity()
