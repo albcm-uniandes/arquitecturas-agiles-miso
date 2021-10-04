@@ -19,8 +19,10 @@ class VistaLogIn(Resource):
 class VistaAccionConsultar(Resource):
     
     def get(self, paciente_id):
-        
-        headers = {'Authorization': f"Bearer {request.headers['Authorization']}"}
+        if request.headers.has_key('Authorization'):
+            headers = {'Authorization': f"Bearer {request.headers['Authorization']}"}
+        else:
+            headers = {}
 
         respuestaPermisosConsultar = requests.get(
             "http://192.168.1.11:5001/consultar",
@@ -43,7 +45,10 @@ class VistaAccionActualizar(Resource):
     
     def put(self, paciente_id):
         
-        headers = {'Authorization': f"Bearer {request.headers['Authorization']}"}
+        if request.headers.has_key('Authorization'):
+            headers = {'Authorization': f"Bearer {request.headers['Authorization']}"}
+        else:
+            headers = {}
 
         respuestaPermisosActualizacion = requests.put(
             "http://192.168.1.11:5001/actualizar",
