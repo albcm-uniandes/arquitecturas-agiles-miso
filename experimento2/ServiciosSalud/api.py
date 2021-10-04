@@ -44,8 +44,8 @@ paciente_schema = PacienteSchema()
 
 class CitasMedicasResource(Resource):
 
-    def get(self, usuario_id, paciente_id):
-        citas_medicas = CitaMedica.query.filter(CitaMedica.id_usuario == usuario_id, CitaMedica.id_paciente == paciente_id)
+    def get(self, paciente_id):
+        citas_medicas = CitaMedica.query.filter(CitaMedica.id_paciente == paciente_id)
         return citas_medicas_schema.dump(citas_medicas)
 
 class PacienteResource(Resource):
@@ -113,7 +113,7 @@ class DatosPrueba:
               db.session.add(nuevo_paciente)
           db.session.commit()
 
-api.add_resource(CitasMedicasResource, '/citas_medicas/<int:usuario_id>/<int:paciente_id>')
+api.add_resource(CitasMedicasResource, '/citas_medicas/<int:paciente_id>')
 api.add_resource(PacienteResource, '/paciente/<int:paciente_id>')
 
 if __name__ == '__main__':
