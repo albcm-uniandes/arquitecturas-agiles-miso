@@ -5,7 +5,8 @@ from flask_restful import Api, Resource
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/salud.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/salud.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///salud.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 db = SQLAlchemy(app)
@@ -120,4 +121,4 @@ if __name__ == '__main__':
     db.create_all()
     _ = DatosPrueba()
     _.cargarDatosPrueba()
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port="5002")
