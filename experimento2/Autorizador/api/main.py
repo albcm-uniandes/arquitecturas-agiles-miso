@@ -17,7 +17,7 @@ db.init_app(app)
 db.create_all()
 cors = CORS(app)
 api = Api(app)
-api.add_resource(VistaLogIn, '/logIn')
+api.add_resource(VistaLogIn, '/login')
 api.add_resource(VistaAccionConsultar, '/consultar')
 api.add_resource(VistaAccionActualizar, '/actualizar')
 

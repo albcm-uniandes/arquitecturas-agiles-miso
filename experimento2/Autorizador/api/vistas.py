@@ -21,13 +21,14 @@ class VistaLogIn(Resource):
 class VistaAccionActualizar(Resource):
     @jwt_required()
     def put(self):
-        usuario = get_jwt_identity()
-        #usuario = Usuario.query.filter_by(id=current_user.id).first_or_404()
+        id_usuario = get_jwt_identity()
+        usuario = Usuario.query.filter(Usuario.id==id_usuario).first_or_404()
         if usuario is None:
             return "El usuario no existe", 404
         else:
-            accion = usuario.acciones.filter_by(accion=ACTUALIZAR).first_or_404()
-            if accion is None:
+            acciones = usuario.acciones.all()
+            accion =Accion.query.filter(Accion.accion==ACTUALIZAR).first_or_404()
+            if acciones is None or accion not in acciones:
                 return "El usuario no posee permisos para esta acción", 403
             else:
                 return "El usuario posee permisos para esta acción", 200
@@ -36,13 +37,14 @@ class VistaAccionConsultar(Resource):
     
     @jwt_required()
     def get(self):
-        usuario = get_jwt_identity()
-        #usuario = Usuario.query.filter_by(id=id_usuario).first_or_404()
+        id_usuario = get_jwt_identity()
+        usuario = Usuario.query.filter(Usuario.id==id_usuario).first_or_404()
         if usuario is None:
             return "El usuario no existe", 404
         else:
-            accion = usuario.acciones.filter_by(accion=CONSULTAR).first_or_404()
-            if accion is None:
+            acciones = usuario.acciones.all()
+            accion =Accion.query.filter(Accion.accion==CONSULTAR).first_or_404()
+            if acciones is None or accion not in acciones:
                 return "El usuario no posee permisos para esta acción", 403
             else:
                 return "El usuario posee permisos para esta acción", 200
